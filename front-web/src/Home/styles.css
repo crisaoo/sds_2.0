@@ -15,11 +15,12 @@
 
   .home-actions {
     margin-left: 10px;
+    
   }
   
   .home-title {
     font-weight: bold;
-    font-size: 55px;
+    font-size: 50px;
     line-height: 58px;
     letter-spacing: -0.015em;
     color: var(--dark-color);
@@ -28,7 +29,7 @@
   
   .home-subtitle {
     font-weight: normal;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 33px;
     letter-spacing: -0.015em;
     color: var(--secondary-color);
@@ -57,7 +58,7 @@
   
   .home-image svg {
     padding-left: 20px;
-    width: 160% !important;
+    width: 150% !important;
   }
   
   @media only screen and (max-width: 768px) {

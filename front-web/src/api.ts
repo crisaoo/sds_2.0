@@ -1,4 +1,5 @@
 import axios from "axios";
+import { OrderPayload } from "./Orders/types";
 
 // const API_URL = "http://localhost:8080";
 const API_URL = "https://sds2-crisao.herokuapp.com";
@@ -10,4 +11,8 @@ export function fetchProducts() {
 
 export function fetchLocalMapbox(local: string){
     return axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${local}.json?access_token=${mapboxToken}`)
+}
+
+export function saveOrder(payload: OrderPayload) {
+    return axios.post(`${API_URL}/orders`, payload);
 }
