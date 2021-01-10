@@ -9,7 +9,7 @@ function Footer () {
             App desenvolvido durante a 2ª ed. do evento Semana DevSuperior
 
             <div className="footer-icons">
-                <a href="linkedin" target="_new">
+                <a href="https://www.linkedin.com/in/cristiano-costa-709469203/" target="_new">
                     <LinkedinIcon />
                 </a>
                 <a href="https://www.instagram.com/crisaocost" target="_new">
