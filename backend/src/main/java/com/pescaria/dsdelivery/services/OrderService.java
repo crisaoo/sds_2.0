@@ -31,8 +31,7 @@ public class OrderService {
 	
 	@Transactional
 	public OrderDTO insert (OrderDTO dto) {
-		Order obj = new Order(null, dto.getAddress(), dto.getLatitude(), dto.getLongitude(), Instant.now(), OrderStatus.PENDING);
-		
+		Order obj = new Order(dto.getAddress(), dto.getLatitude(), dto.getLongitude(), Instant.now(), OrderStatus.PENDING);
 		for (ProductDTO prodDto : dto.getProducts()) {
 			Product p = prodRepository.getOne(prodDto.getId());
 			obj.getProducts().add(p);
