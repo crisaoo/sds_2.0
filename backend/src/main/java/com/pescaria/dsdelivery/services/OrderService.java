@@ -25,7 +25,7 @@ public class OrderService {
 	
 	@Transactional(readOnly = true)
 	public List<OrderDTO> findAll(){
-		List<Order> list = repository.findAllPendingOrderOrderByMomentAsc();
+		List<Order> list = repository.findAllPendingOrderByMomentAsc();
 		return list.stream().map(o -> new OrderDTO(o)).collect(Collectors.toList());
 	}
 	
