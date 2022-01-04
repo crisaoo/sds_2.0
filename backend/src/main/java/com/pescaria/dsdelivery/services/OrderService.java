@@ -4,6 +4,9 @@ import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +20,7 @@ import com.pescaria.dsdelivery.repositories.OrderRepository;
 import com.pescaria.dsdelivery.repositories.ProductRepository;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
 	@Autowired
 	private OrderRepository repository;
@@ -31,18 +35,24 @@ public class OrderService {
 	
 	@Transactional
 	public OrderDTO insert (OrderDTO dto) {
-		Order obj = new Order(dto.getAddress(), dto.getLatitude(), dto.getLongitude(), Instant.now(), OrderStatus.PENDING);
-		for (ProductDTO prodDto : dto.getProducts()) {
-			Product p = prodRepository.getOne(prodDto.getId());
+		Order obj = new Order(null, dto.getAddress(), dto.getLatitude(), dto.getLongitude(), Instant.now(), OrderStatus.PENDING);
+
+//		System.out.println(dto.getProducts());
+
+		for (ProductDTO prodDTO : dto.getProducts()) {
+			Product p = prodRepository.getOne(prodDTO.getId() - 1);
 			obj.getProducts().add(p);
 		}
-		
-		return new OrderDTO(repository.save(obj));
+		Order savedObj = repository.save(obj);
+		System.out.println(savedObj);
+		return new OrderDTO(savedObj);
 	}
 	
 	@Transactional
 	public OrderDTO setDelivered (Long id) {
 		Order obj = repository.getOne(id);
+
+
 		if (obj.getStatus().equals(OrderStatus.PENDING)) {
 			obj.setStatus(OrderStatus.DELIVERED);
 			obj = repository.save(obj);

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
 public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

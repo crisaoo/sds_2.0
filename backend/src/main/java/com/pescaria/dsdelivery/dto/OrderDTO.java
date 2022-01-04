@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class OrderDTO implements Serializable{
 	private final static long serialVersionUID = 1L;
 	

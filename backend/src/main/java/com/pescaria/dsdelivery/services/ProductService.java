@@ -15,7 +15,6 @@ import com.pescaria.dsdelivery.repositories.ProductRepository;
 @Service
 @AllArgsConstructor
 public class ProductService {
-	@Autowired
 	private ProductRepository repository;
 	
 	@Transactional(readOnly = true)
