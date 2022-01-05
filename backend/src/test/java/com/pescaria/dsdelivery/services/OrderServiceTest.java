@@ -34,9 +34,13 @@ public class OrderServiceTest {
     // Method: findAll
     @Test
     public void shouldBeListOrderDTO(){
-        List orders = service.findAll();
-        Assertions.assertNotNull(orders);
-        orders.forEach(obj -> Assertions.assertEquals(obj.getClass(), OrderDTO.class));
+        List<Order> orders = findAll();
+        Mockito.when(repository.findAllPendingOrderByMomentAsc()).thenReturn(orders);
+
+        List ordersDTO = service.findAll();
+
+        Assertions.assertEquals(3, ordersDTO.size());
+        ordersDTO.forEach(order -> Assertions.assertEquals(OrderDTO.class, order.getClass()));
     }
 
     // Method: insert
@@ -77,20 +81,17 @@ public class OrderServiceTest {
 
 
     // Auxiliary methods
-    private List<Product> getProducts(){
-        Product p1 = new Product();
-        p1.setId(1L);
-        p1.setName("product 1");
-        p1.setDescription("description");
-        p1.setImageUri("image URI");
-        p1.setPrice(7.0);
+    private List<Order> findAll(){
+        Order o1 = new Order(1L, "adress 1", -11.7545, -30.5697, Instant.now(), OrderStatus.PENDING);
+        Order o2 = new Order(2L, "adress 2", -11.7545, -30.5697, Instant.now(), OrderStatus.DELIVERED);
+        Order o3 = new Order(3L, "adress 3", -11.7545, -30.5697, Instant.now(), OrderStatus.PENDING);
 
-        Product p2 = new Product();
-        p2.setId(2L);
-        p2.setName("product 2");
-        p2.setDescription("description");
-        p2.setImageUri("image URI");
-        p2.setPrice(2.50);
+        return Arrays.asList(o1, o2, o3);
+    }
+
+    private List<Product> getProducts(){
+        Product p1 = new Product(1L, "product 1", 7.0,"description", "image URI");
+        Product p2 = new Product(2L, "product 2", 2.55,"description", "image URI");
 
         return Arrays.asList(p1, p2);
     }
