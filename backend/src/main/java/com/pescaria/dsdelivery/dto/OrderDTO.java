@@ -8,17 +8,15 @@ import java.util.stream.Collectors;
 
 import com.pescaria.dsdelivery.entities.Order;
 import com.pescaria.dsdelivery.entities.OrderStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class OrderDTO implements Serializable{
 	private final static long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String address;
 	private Double latitude;

@@ -7,7 +7,9 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import com.pescaria.dsdelivery.utils.Util;
 
 import java.util.List;
 
@@ -25,8 +27,10 @@ public class ProductServiceTest {
     // Method: findAll
     @Test
     public void shouldBeListProductsDTO(){
+        Mockito.when(repository.findAllByOrderByNameAsc()).thenReturn(Util.getProducts());
         List products = service.findAll();
-        Assertions.assertNotNull(products);
+
+        Assertions.assertEquals(2, products.size());
         products.forEach(obj -> Assertions.assertEquals(obj.getClass(), ProductDTO.class));
     }
 }
