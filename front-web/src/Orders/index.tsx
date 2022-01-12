@@ -51,7 +51,7 @@ function Orders() {
         }
         else {
             saveOrder(payload).then(() => {
-                toast.error('Pedido enviado com sucesso!');
+                toast.success('Pedido enviado com sucesso!');
                 setSelectedProducts([]);
               })
                 .catch(() => {
